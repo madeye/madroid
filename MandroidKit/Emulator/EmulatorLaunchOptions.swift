@@ -8,6 +8,9 @@ public struct EmulatorLaunchOptions: Sendable, Hashable {
     public var adbServerPort: Int
     public var coldBoot: Bool = false
     public var gpuBackend: GPUBackend = .defaultBackend
+    /// Pass real microphone samples to the guest. Without `-allow-host-audio`
+    /// the emulator zero-fills `hw.audioInput` so apps record silence.
+    public var hostAudioInput: Bool = false
     public var extraArguments: [String] = []
 
     public init(avdName: String, consolePort: Int, grpcPort: Int, adbServerPort: Int) {
@@ -31,6 +34,7 @@ public struct EmulatorLaunchOptions: Sendable, Hashable {
             "-feature", gpuBackend.emulatorFeatures,
         ]
         if coldBoot { args += ["-no-snapshot-load"] }
+        if hostAudioInput { args += ["-allow-host-audio"] }
         args += extraArguments
         return args
     }

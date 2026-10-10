@@ -7,6 +7,11 @@ public struct RunnerSettings: Sendable, Equatable {
     public var ramMB: Int = 4096
     public var cores: Int = 4
     public var gpuBackend: GPUBackend = .defaultBackend
+    /// Expose this Mac's microphone to Android apps (`-allow-host-audio`).
+    /// Off by default so a fresh install never triggers a macOS privacy prompt.
+    public var hostMicrophone: Bool = false
+    /// Use this Mac's camera as the Android front camera (`hw.camera.front=webcam0`).
+    public var hostCamera: Bool = false
     public var defaultWindowHeight: Int = 800
     public var launcherStubs: Bool = true
     /// New app windows open in landscape ("horizontal") unless changed.
@@ -24,6 +29,9 @@ public struct RunnerSettings: Sendable, Equatable {
         if let v = defaults.object(forKey: "mediaVolumePercent") as? Int, (0...100).contains(v) { s.mediaVolumePercent = v }
         if let v = defaults.object(forKey: "ramMB") as? Int, ramChoices.contains(v) { s.ramMB = v }
         if let v = defaults.object(forKey: "cores") as? Int, coreChoices.contains(v) { s.cores = v }
+        // bool(forKey:) also accepts "YES"/"NO" strings from `-hostCamera YES` launch arguments.
+        if defaults.object(forKey: "hostMicrophone") != nil { s.hostMicrophone = defaults.bool(forKey: "hostMicrophone") }
+        if defaults.object(forKey: "hostCamera") != nil { s.hostCamera = defaults.bool(forKey: "hostCamera") }
         if let v = defaults.object(forKey: "defaultWindowHeight") as? Int, (500...1600).contains(v) { s.defaultWindowHeight = v }
         if let v = defaults.object(forKey: "launcherStubs") as? Bool { s.launcherStubs = v }
         if let v = defaults.object(forKey: "landscapeByDefault") as? Bool { s.landscapeByDefault = v }
@@ -37,6 +45,8 @@ public struct RunnerSettings: Sendable, Equatable {
         defaults.set(ramMB, forKey: "ramMB")
         defaults.set(cores, forKey: "cores")
         defaults.set(gpuBackend.rawValue, forKey: "gpuBackend")
+        defaults.set(hostMicrophone, forKey: "hostMicrophone")
+        defaults.set(hostCamera, forKey: "hostCamera")
         defaults.set(defaultWindowHeight, forKey: "defaultWindowHeight")
         defaults.set(launcherStubs, forKey: "launcherStubs")
         defaults.set(landscapeByDefault, forKey: "landscapeByDefault")
@@ -62,10 +72,20 @@ public struct RunnerSettings: Sendable, Equatable {
     /// Mirrors to try, in order, for the current preference.
     public var mirrors: [DownloadMirror] { DownloadMirror.order(for: downloadMirror) }
 
-    /// Applies the hardware settings to an AVD config.
+    /// Applies the hardware settings to an AVD config. The host camera only
+    /// replaces the front camera: that is the one calling apps open first, and
+    /// the back camera keeps the virtual scene for apps that need one.
     public func apply(to config: inout AVDConfig) {
         config.ramMB = ramMB
         config.cores = cores
         config.gpuBackend = gpuBackend
+        config.frontCamera = hostCamera ? AVDConfig.hostCamera : AVDConfig.fakeFrontCamera
+        config.backCamera = AVDConfig.fakeBackCamera
+    }
+
+    /// Applies the settings that are command-line flags rather than AVD keys.
+    public func apply(to options: inout EmulatorLaunchOptions) {
+        options.gpuBackend = gpuBackend
+        options.hostAudioInput = hostMicrophone
     }
 }

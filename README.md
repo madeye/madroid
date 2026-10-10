@@ -49,6 +49,11 @@ Settings includes a media-volume slider for all Android apps. It controls the
 guest's native media stream, supports mute, and restores your chosen level on
 restart. Audio continues to play through the emulator's native macOS backend.
 
+Settings ▸ Camera & Microphone lets Android apps use this Mac's camera (as the
+front camera) and microphone, for voice and video calls. Both are off by
+default; macOS asks for permission the first time an app records. Restart
+Android after changing them.
+
 Settings ▸ Virtual device defaults to hardware graphics with Vulkan descriptor
 batching, with the original hardware, automatic, and software profiles available.
 Restart Android after changing the backend;

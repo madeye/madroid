@@ -15,6 +15,8 @@ parser.add_argument('--apk', type=Path)
 parser.add_argument('--test', choices=['smoke', 'volume'], default='smoke')
 parser.add_argument('--package', default='com.github.shadowsocks')
 parser.add_argument('--sdk-data', type=Path, default=Path.home() / 'Library/Application Support/Mandroid')
+parser.add_argument('--app-arg', action='append', default=[], metavar='ARG',
+                    help='extra launch argument for the app, repeatable; write --app-arg=-hostMicrophone --app-arg=YES')
 args = parser.parse_args()
 app = args.app.resolve()
 apk = args.apk.resolve() if args.apk else None
@@ -44,7 +46,7 @@ print(f'Offscreen test data and artifacts: {root}', flush=True)
 with (root / 'host.log').open('w') as log:
     process = subprocess.Popen([str(app / 'Contents/MacOS/Mandroid'),
         '-dataRoot', str(root), '-uiTestControlDirectory', str(control),
-        '-launcherStubs', 'NO'], stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+        '-launcherStubs', 'NO', *args.app_arg], stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
     script = 'volume-test.sh' if args.test == 'volume' else 'integration-test.sh'
     test = None
     try:

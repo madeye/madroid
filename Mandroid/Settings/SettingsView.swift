@@ -13,7 +13,10 @@ struct SettingsView: View {
     @State private var volumeError: String?
 
 
-    private var needsRestart: Bool { settings.ramMB != saved.ramMB || settings.cores != saved.cores || settings.gpuBackend != saved.gpuBackend }
+    private var needsRestart: Bool {
+        settings.ramMB != saved.ramMB || settings.cores != saved.cores || settings.gpuBackend != saved.gpuBackend
+            || settings.hostMicrophone != saved.hostMicrophone || settings.hostCamera != saved.hostCamera
+    }
 
     var body: some View {
         Form {
@@ -51,6 +54,12 @@ struct SettingsView: View {
                     Text("Available when Android is running.").font(.caption).foregroundStyle(.secondary)
                 }
                 if let volumeError { HostNotice(message: volumeError).transition(.opacity) }
+            }
+            Section("Camera & Microphone") {
+                Toggle("Let Android apps use this Mac's microphone", isOn: $settings.hostMicrophone)
+                Toggle("Let Android apps use this Mac's camera", isOn: $settings.hostCamera)
+                Text("For voice and video calls. macOS asks for permission the first time an app records; the Mac's camera acts as the front camera. Takes effect after a restart.")
+                    .font(.caption).foregroundStyle(.secondary)
             }
             Section("Windows") {
                 Picker("New windows open", selection: $settings.landscapeByDefault) {
