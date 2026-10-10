@@ -87,6 +87,7 @@
 		BE7BB2EA4A9B4702690989EC /* AppCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83297A94905C8AB9B23F9C3 /* AppCatalog.swift */; };
 		C74B91BD02E590AA9175CEFB /* AppProxyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696C8B2F08DE35734A372F0 /* AppProxyView.swift */; };
 		C799C337A2138CB133871FA2 /* GRPCProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = D0A6D278C7A47F529FEE5404 /* GRPCProtobuf */; };
+		CC755A8A5F49632A6287CAD5 /* HostDevicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDDC17B8230D60798FA257 /* HostDevicesTests.swift */; };
 		CDE305331380AF7CBD85F64C /* Unarchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452642B45534C755FF9E3CC4 /* Unarchiver.swift */; };
 		D0AD9DA64E84B6D390110921 /* UITestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779B6FF861E9BD4662EA422 /* UITestMode.swift */; };
 		D11CCC1F6AC91DB80A92B9C9 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259DC05229C3C583DD81182C /* LibraryView.swift */; };
@@ -188,6 +189,7 @@
 		47C65349DBB2EA8395C63E55 /* ADBClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADBClient.swift; sourceTree = "<group>"; };
 		4BB8014AB35C738E335559BD /* LibraryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryWindowController.swift; sourceTree = "<group>"; };
 		4D6E418B7AE15E4E19E586FF /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		4FFDDC17B8230D60798FA257 /* HostDevicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostDevicesTests.swift; sourceTree = "<group>"; };
 		536A55812105ED240C8E7C38 /* ScrollGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGesture.swift; sourceTree = "<group>"; };
 		55DA50087CE3FCBA56353A14 /* AppWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindowController.swift; sourceTree = "<group>"; };
 		573F637DED923589D2EA7A4D /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		7AABAAC0B4AC9941A2D95201 /* MandroidKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MandroidKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6C6EC4702A6E611DFB62D7 /* aapt2-maven-metadata.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "aapt2-maven-metadata.xml"; sourceTree = "<group>"; };
 		80179973E7A67D4C1D77F184 /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
+		80F2346B9A7C3DA473E35B9C /* Mandroid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mandroid.entitlements; sourceTree = "<group>"; };
 		837A9A0CE90A9279D60ABFAA /* sys-img2-3-google_apis_playstore.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "sys-img2-3-google_apis_playstore.xml"; sourceTree = "<group>"; };
 		85BB7A4A6CDC3A601EB286D4 /* DownloadMirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadMirror.swift; sourceTree = "<group>"; };
 		8A577EDF958CD6BFC2A38D77 /* IconExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconExtractor.swift; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 				9729937DF91EB20F700976AA /* Assets.xcassets */,
 				08D361DE1BDD3FCEC2E336DE /* HostStyle.swift */,
 				782AB065419FE991C79921CE /* Info.plist */,
+				80F2346B9A7C3DA473E35B9C /* Mandroid.entitlements */,
 				573F637DED923589D2EA7A4D /* WindowManager.swift */,
 				BB870F1C150DF5F41851E5E9 /* AppWindow */,
 				95A93A9DB971C044FE15CF4A /* Clipboard */,
@@ -577,6 +581,7 @@
 				92A128C67BD4F9AA42264303 /* DeviceProfileTests.swift */,
 				6811683DF5318ABF587E2333 /* Fixtures.swift */,
 				AD9C4268BD8813AED61B437D /* GPUBackendTests.swift */,
+				4FFDDC17B8230D60798FA257 /* HostDevicesTests.swift */,
 				1592A1AB2261451271FC320C /* InputTests.swift */,
 				76786C4CB12B3475CC4DE318 /* KernelSUTests.swift */,
 				D8606B63E97ACE543CFD3493 /* MediaVolumeTests.swift */,
@@ -803,6 +808,7 @@
 				ABA069897E3CF4B5AAF49F2E /* DeviceProfileTests.swift in Sources */,
 				407A8753EE4BABD7F642049B /* Fixtures.swift in Sources */,
 				F04B857900FF2EA320B7B0EA /* GPUBackendTests.swift in Sources */,
+				CC755A8A5F49632A6287CAD5 /* HostDevicesTests.swift in Sources */,
 				F12B6081F2DF4A0290363E20 /* InputTests.swift in Sources */,
 				78B50525F4B22DD63646A684 /* KernelSUTests.swift in Sources */,
 				D2F4038A521D72D1500DEBA4 /* LauncherStubBuilder.swift in Sources */,
@@ -930,6 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mandroid/Mandroid.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = NO;
 				INFOPLIST_FILE = Mandroid/Info.plist;
@@ -1029,6 +1036,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mandroid/Mandroid.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = NO;
 				INFOPLIST_FILE = Mandroid/Info.plist;

@@ -101,6 +101,12 @@ struct SettingsView: View {
                 }
                 if let volumeError { HostNotice(message: volumeError).transition(.opacity) }
             }
+            Section("Camera & Microphone") {
+                Toggle("Let Android apps use this Mac's microphone", isOn: $settings.hostMicrophone)
+                Toggle("Let Android apps use this Mac's camera", isOn: $settings.hostCamera)
+                Text("For voice and video calls. macOS asks for permission the first time an app records; the Mac's camera acts as the front camera. Takes effect after a restart.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
             Section("Windows") {
                 Picker("New windows open", selection: $settings.landscapeByDefault) {
                     Text("Landscape").tag(true)
