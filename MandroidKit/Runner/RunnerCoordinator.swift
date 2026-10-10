@@ -200,7 +200,7 @@ public final class RunnerCoordinator {
             }
             var options = EmulatorLaunchOptions(avdName: avdName, consolePort: console, grpcPort: grpc, adbServerPort: adbPort)
             options.coldBoot = coldBoot || profileChanged
-            options.gpuBackend = settings.gpuBackend
+            settings.apply(to: &options)
             options.kernelSURamdisk = kernelSU?.ramdisk
 
             setStage("Starting adb")

@@ -77,6 +77,11 @@ Rooted sessions cold boot. Turn KernelSU off and restart to boot stock while
 keeping installed apps and data. Manage root grants in KernelSU Manager;
 ADB shell is not automatically granted root. See [KernelSU settings](docs/KERNELSU.md).
 
+Settings ▸ Camera & Microphone lets Android apps use this Mac's camera (as the
+front camera) and microphone, for voice and video calls. Both are off by
+default; macOS asks for permission the first time an app records. Restart
+Android after changing them.
+
 Settings ▸ Virtual device defaults to hardware graphics with Vulkan descriptor
 batching, with the original hardware, automatic, and software profiles available.
 Restart Android after changing the backend;

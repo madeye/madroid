@@ -19,6 +19,14 @@ public struct AVDConfig: Sendable, Hashable {
     public var sdcardSizeMB: Int = 512
     public var gpuMode: String { gpuBackend.emulatorMode }
     public var gpuBackend: GPUBackend = .defaultBackend
+    /// Camera emulation modes (`-help-camera-front`): `emulated`,
+    /// `virtualscene`, `webcam<N>` (a host camera), `none`.
+    public var frontCamera: String = Self.fakeFrontCamera
+    public var backCamera: String = Self.fakeBackCamera
+    public static let fakeFrontCamera = "emulated"
+    public static let fakeBackCamera = "virtualscene"
+    /// The first camera macOS reports (`emulator -webcam-list`).
+    public static let hostCamera = "webcam0"
 
     public init(systemImagePath: String) {
         self.systemImagePath = systemImagePath
@@ -49,8 +57,8 @@ public struct AVDConfig: Sendable, Hashable {
             ("hw.arc", "false"),
             ("hw.audioInput", "yes"),
             ("hw.battery", "yes"),
-            ("hw.camera.back", "virtualscene"),
-            ("hw.camera.front", "emulated"),
+            ("hw.camera.back", backCamera),
+            ("hw.camera.front", frontCamera),
             ("hw.cpu.arch", cpuArch),
             ("hw.cpu.ncore", "\(cores)"),
             ("hw.dPad", "no"),

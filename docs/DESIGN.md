@@ -260,7 +260,7 @@ AVD without `avdmanager`: two files.
     sdcard.size=512M
     hw.audioInput=yes
     hw.camera.back=virtualscene
-    hw.camera.front=emulated
+    hw.camera.front=emulated       # webcam0 when Settings enables the Mac's camera
     hw.gps=yes
     hw.battery=yes
     hw.accelerometer=yes
@@ -275,11 +275,25 @@ AVD without `avdmanager`: two files.
 
 The default uses Pixel Tablet resolution (2560×1600), a 320 dpi logical
 density (1280×800 dp), and the same ARM64 Google Play system image. Existing
-AVDs retain installed apps and data; changing display geometry skips loading
-the old quickboot snapshot on the next boot. The
+AVDs retain installed apps and data; changing display geometry, the GPU
+backend or a camera mode skips loading the old quickboot snapshot on the next
+boot (the guest camera HAL enumerates host cameras once at boot). The
 emulator ships no `devices.xml`; `hw.device.name` is a plain string with no
 catalogue lookup, so every `hw.*` value must be written explicitly and
 `hw.device.hash2` (an Android Studio artefact) is omitted.
+
+Host camera and microphone (Settings ▸ Camera & Microphone, both off by
+default so a fresh install never shows a macOS privacy prompt): the camera
+toggle sets `hw.camera.front=webcam0`, the first camera macOS reports via
+`emulator -webcam-list`; the back camera keeps the virtual scene. The
+microphone toggle adds `-allow-host-audio` to the command line; `hw.audioInput`
+is always `yes`, but without that flag the emulator zero-fills captured audio
+and apps record silence. QEMU is Mandroid's child process, so macOS attributes
+its camera and microphone use to Mandroid: the app bundle carries
+`NSCameraUsageDescription`/`NSMicrophoneUsageDescription` and the hardened
+runtime entitlements `com.apple.security.device.camera` and
+`com.apple.security.device.audio-input` (the signed QEMU binary has the same
+entitlements). Change the toggles and restart Android to apply them.
 
 Environment isolation for every `emulator` and `adb` process we spawn, so the
 user's own `~/.android` and Android Studio are never touched:

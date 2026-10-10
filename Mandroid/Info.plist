@@ -54,10 +54,14 @@
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Android apps can use this Mac's camera for video calls when enabled in Settings.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2026 Max Lv. MIT License.</string>
 	<key>NSMainStoryboardFile</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Android apps can use this Mac's microphone for calls and recording when enabled in Settings.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
